@@ -1,4 +1,5 @@
-﻿using WebAPI.Fime.Manha.Domains;
+﻿using System.Data.SqlClient;
+using WebAPI.Fime.Manha.Domains;
 using WebAPI.Fime.Manha.Interfaces;
 
 namespace WebAPI.Fime.Manha.Repositoris
@@ -7,37 +8,146 @@ namespace WebAPI.Fime.Manha.Repositoris
     {
         /// <summary>
         /// String de conexão com o banco de dados ...
+        /// Data Source: Nome do servidor
+        /// Initial Catalog: Nome do banco de dados
+        /// Autenticação: User Id=sa; Password=Senai@134;
         /// </summary>
         private string StringConexao = "Data Source=NOTE06-S15; Initial Catalog=Filmes_Lucas; User Id=sa; Password=Senai@134;";
 
-        public void AtualizarIdCorpo(GeneroDomain genero)
+        public void AtualizarIdCorpo(FilmeDomain filme)
         {
-            throw new NotImplementedException();
+            using (SqlConnection con = new SqlConnection(StringConexao))
+            {
+                string queryUpdate = "UPDATE Filme SET Titulo = @Titulo WHERE IdFilme = @Id";
+
+                using (SqlCommand cmd = new SqlCommand(queryUpdate, con))
+                {
+                    cmd.Parameters.AddWithValue("@Id", filme.IdFilme);
+                    cmd.Parameters.AddWithValue("@Titulo", filme.Titulo);
+
+                    con.Open();
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
         }
 
-        public void AtualizarIdUrl(int id, GeneroDomain genero)
+        public void AtualizarIdUrl(int id, FilmeDomain filme)
         {
-            throw new NotImplementedException();
+            using (SqlConnection con = new SqlConnection(StringConexao))
+            {
+                string queryUpdate = "UPDATE Filme SET Titulo = @Titulo WHERE IdFilme = @Id";
+
+                using (SqlCommand cmd = new SqlCommand(queryUpdate, con))
+                {
+                    cmd.Parameters.AddWithValue("@Id", id);
+                    cmd.Parameters.AddWithValue("@Titulo", filme.Titulo);
+
+                    con.Open();
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
         }
 
-        public GeneroDomain BuscarPorId(int Id)
+        public FilmeDomain BuscarPorId(int Id)
         {
-            throw new NotImplementedException();
+            FilmeDomain? filme = null;
+
+            using (SqlConnection con = new SqlConnection(StringConexao))
+            {
+                string querySelectById = "SELECT IdFilme, Titulo FROM Filme WHERE IdFilme = @IdFilme";
+
+                con.Open();
+
+                SqlDataReader rdr;
+
+                using (SqlCommand cmd = new SqlCommand(querySelectById, con))
+                {
+                    cmd.Parameters.AddWithValue("@IdFilme", Id);
+
+                    rdr = cmd.ExecuteReader();
+
+                    if (rdr.Read())
+                    {
+                        filme = new FilmeDomain()
+                        {
+                            IdFilme = Convert.ToInt32(rdr["IdFilme"]),
+                            Titulo = Convert.ToString(rdr["Titulo"])
+                        };
+                    }
+                }
+            }
+
+            return filme;
         }
 
-        public void Cadastrar(GeneroDomain novoGenero)
+
+        public void Cadastrar(FilmeDomain novoFilme)
         {
-            throw new NotImplementedException();
+            using (SqlConnection con = new SqlConnection(StringConexao))
+            {
+                string queryInsert = "INSERT INTO Filme(Titulo) VALUES (@Titulo)";
+
+                using (SqlCommand cmd = new SqlCommand(queryInsert, con))
+                {
+                    cmd.Parameters.AddWithValue("@Titulo", novoFilme.Titulo);
+
+                    con.Open();
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
         }
 
         public void Deletar(int Id)
         {
-            throw new NotImplementedException();
+            using (SqlConnection con = new SqlConnection(StringConexao))
+            {
+                string queryDelete = "DELETE FROM Filme WHERE IdFilme = @Id";
+
+                using (SqlCommand cmd = new SqlCommand(queryDelete, con))
+                {
+                    cmd.Parameters.AddWithValue("@Id", Id);
+
+                    con.Open();
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
         }
 
-        public List<GeneroDomain> ListarTodos()
+        public List<FilmeDomain> ListarTodos()
         {
-            throw new NotImplementedException();
+            List<FilmeDomain> listaFilmes = new List<FilmeDomain>();
+
+            using (SqlConnection con = new SqlConnection(StringConexao))
+            {
+                string querySelectAll = "SELECT IdFilme, Titulo FROM Filme";
+
+                con.Open();
+
+                SqlDataReader rdr;
+
+                using (SqlCommand cmd = new SqlCommand(querySelectAll, con))
+                {
+                    rdr = cmd.ExecuteReader();
+
+                    while (rdr.Read())
+                    {
+                        FilmeDomain filme = new FilmeDomain()
+                        {
+                            IdFilme = Convert.ToInt32(rdr["IdFilme"]),
+                            Titulo = Convert.ToString(rdr["Titulo"])
+                        };
+
+                        listaFilmes.Add(filme);
+                    }
+                }
+            }
+
+            return listaFilmes;
         }
+
     }
 }

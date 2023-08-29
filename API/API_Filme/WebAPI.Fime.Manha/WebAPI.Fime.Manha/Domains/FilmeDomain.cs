@@ -14,6 +14,6 @@ namespace WebAPI.Fime.Manha.Domains
         public int IdGenero { get; set; }
 
         //referência para a classe Genero
-        public  GeneroDomain? Genero { get; set; }
+        public  GeneroDomain Genero { get; set; }
     }
 }

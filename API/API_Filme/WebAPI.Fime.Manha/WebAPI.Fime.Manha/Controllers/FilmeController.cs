@@ -3,36 +3,22 @@ using Microsoft.AspNetCore.Mvc;
 using WebAPI.Fime.Manha.Domains;
 using WebAPI.Fime.Manha.Interfaces;
 using WebAPI.Fime.Manha.Repositoris;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace WebAPI.Fime.Manha.Controllers
 {
-    //Define que a rota de uma requisição será no seguinte formato
-    //dominio/api/nomeController
-    //ex. http://localhost:500/api/genero
     [Route("api/[controller]")]
 
-    //Define que é um controlador de api
     [ApiController]
 
     //Define que tipo de resposta da api será no formato json
     [Produces("application/json")]
-
-    //Método controlador que herda da controller base
-    //Onde será gerado os Endpoints (rotas)
-    public class GeneroController : ControllerBase
+    public class FilmeController : ControllerBase
     {
-        /// <summary>
-        /// Objeto _generoRepository que ira receber todos os m[etodos na interface IGeneroRepository
-        /// </summary>
-        private IGeneroRepository _generoRepository { get; set; }
+        private IFilmeRepository _filmeRepository { get; set; }
 
-        /// <summary>
-        /// Instancia o objeto _generoRepository para que haja referência aos métodos no repositório
-        /// </summary>
-        public GeneroController()
+        public FilmeController() 
         {
-            _generoRepository = new GeneroRepository();
+            _filmeRepository = new FilmeRepository();
         }
 
         /// <summary>
@@ -45,10 +31,10 @@ namespace WebAPI.Fime.Manha.Controllers
             try
             {
                 //Cria uma lista que recebe os dados da requisição
-                List<GeneroDomain> listaGenero = _generoRepository.ListarTodos();
+                List<FilmeDomain> listaFilme = _filmeRepository.ListarTodos();
 
                 //Retorna a lista no formato json com o estatus code ok(200)
-                return Ok(listaGenero);
+                return Ok(listaFilme);
             }
             catch (Exception erro)
             {
@@ -68,7 +54,7 @@ namespace WebAPI.Fime.Manha.Controllers
             try
             {
                 // Chama o método BuscarPorId do repositório, passando o id como parâmetro
-                GeneroDomain genero = _generoRepository.BuscarPorId(id);
+                FilmeDomain genero = _filmeRepository.BuscarPorId(id);
 
                 if (genero == null)
                 {
@@ -92,12 +78,12 @@ namespace WebAPI.Fime.Manha.Controllers
         /// <param name="nonoGenero">Objeto recebido na requisição</param>
         /// <returns>status code 201(created)</returns>
         [HttpPost]
-        public IActionResult Post(GeneroDomain nonoGenero)
+        public IActionResult Post(FilmeDomain nonoFilme)
         {
             try
             {
                 //Fazendo a chamada para o método cadastrar passando o objeto como parâmetro
-                _generoRepository.Cadastrar(nonoGenero);
+                _filmeRepository.Cadastrar(nonoFilme);
 
                 //Retorna um status code 201 - Created
                 return StatusCode(201);
@@ -119,7 +105,7 @@ namespace WebAPI.Fime.Manha.Controllers
             try
             {
                 // Chama o método de exclusão do repositório
-                _generoRepository.Deletar(id);
+                _filmeRepository.Deletar(id);
 
                 // Retorna o status code 204 - No Content para indicar a exclusão bem-sucedida
                 return NoContent(); //ou return StatusCode(204);
@@ -132,30 +118,30 @@ namespace WebAPI.Fime.Manha.Controllers
         }
 
         /// <summary>
-        /// Atualizar um determinado Gênero pelo Id
+        /// Atualizar um determinado Filme pelo Id
         /// </summary>
         /// <param name="id"></param>
-        /// <param name="genero"></param>
+        /// <param name="filme"></param>
         /// <returns>O objeto atualizado</returns>
         [HttpPut("{id}")] // Use o atributo HttpPut e especifique o parâmetro id
-        public IActionResult Put(int id, GeneroDomain genero) // Especifique os parâmetros id e genero
+        public IActionResult Put(int id, FilmeDomain filme) // Especifique os parâmetros id e Filme
         {
             try
             {
                 // Chame o método BuscarPorId do repositório para verificar se o gênero existe
-                GeneroDomain generoExistente = _generoRepository.BuscarPorId(id);
+                FilmeDomain filmeExistente = _filmeRepository.BuscarPorId(id);
 
-                if (generoExistente == null)
+                if (filmeExistente == null)
                 {
-                    // Retorna o status code 404 - Not Found se o gênero não for encontrado
+                    // Retorna o status code 404 - Not Found se o filme não for encontrado
                     return NotFound();
                 }
 
                 // Atribua o id do gênero existente ao objeto recebido
-                genero.IdGenero = id;
+                filme.IdFilme = id;
 
                 // Chame o método AtualizarIdUrl do repositório para atualizar o gênero
-                _generoRepository.AtualizarIdUrl(id, genero);
+                _filmeRepository.AtualizarIdUrl(id, filme);
 
                 // Retorne o status code 204 - No Content para indicar a atualização bem-sucedida
                 return NoContent(); // ou return StatusCode(204);
@@ -173,21 +159,21 @@ namespace WebAPI.Fime.Manha.Controllers
         /// <param name="genero"></param>
         /// <returns>O objeto atualizado</returns>
         [HttpPut]
-        public IActionResult Put(GeneroDomain genero)
+        public IActionResult Put(FilmeDomain filme)
         {
             try
             {
-                // Verifique se o gênero existe no repositório
-                GeneroDomain generoExistente = _generoRepository.BuscarPorId(genero.IdGenero);
+                // Verifique se o filme existe no repositório
+                FilmeDomain filmeExistente = _filmeRepository.BuscarPorId(filme.IdFilme);
 
-                if (generoExistente == null)
+                if (filmeExistente == null)
                 {
-                    // Retorna o status code 404 - Not Found se o gênero não for encontrado
+                    // Retorna o status code 404 - Not Found se o filme não for encontrado
                     return NotFound();
                 }
 
                 // Chame o método AtualizarIdCorpo do repositório para atualizar o gênero
-                _generoRepository.AtualizarIdCorpo(genero);
+                _filmeRepository.AtualizarIdCorpo(filme);
 
                 // Retorne o status code 204 - No Content para indicar a atualização bem-sucedida
                 return NoContent();

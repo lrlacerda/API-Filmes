@@ -4,9 +4,43 @@
         <name>WebAPI.Fime.Manha</name>
     </assembly>
     <members>
+        <member name="M:WebAPI.Fime.Manha.Controllers.FilmeController.Get(System.Int32)">
+            <summary>
+            Endpoint que aciona o método ListarId no repositório e retorna a resposta para o usuário(front-end)
+            </summary>
+            <returns>Retorna a resposnta para o usuário</returns>
+        </member>
+        <member name="M:WebAPI.Fime.Manha.Controllers.FilmeController.Post(WebAPI.Fime.Manha.Domains.FilmeDomain)">
+            <summary>
+            Endpoint que aciona o método de cadastro gênero
+            </summary>
+            <param name="nonoGenero">Objeto recebido na requisição</param>
+            <returns>status code 201(created)</returns>
+        </member>
+        <member name="M:WebAPI.Fime.Manha.Controllers.FilmeController.Delete(System.Int32)">
+            <summary>
+            Deletar um determinado Gênero
+            </summary>
+            <param name="id">ID do Objeto recebido na requisição a ser Deletado</param>
+        </member>
+        <member name="M:WebAPI.Fime.Manha.Controllers.FilmeController.Put(System.Int32,WebAPI.Fime.Manha.Domains.FilmeDomain)">
+            <summary>
+            Atualizar um determinado Filme pelo Id
+            </summary>
+            <param name="id"></param>
+            <param name="filme"></param>
+            <returns>O objeto atualizado</returns>
+        </member>
+        <member name="M:WebAPI.Fime.Manha.Controllers.FilmeController.Put(WebAPI.Fime.Manha.Domains.FilmeDomain)">
+            <summary>
+            Atualizar um determinado Gênero pelo Corpo
+            </summary>
+            <param name="genero"></param>
+            <returns>O objeto atualizado</returns>
+        </member>
         <member name="P:WebAPI.Fime.Manha.Controllers.GeneroController._generoRepository">
             <summary>
-            Objeto _generoRepository que ir[a receber todos os m[etodos na interface IGeneroRepository
+            Objeto _generoRepository que ira receber todos os m[etodos na interface IGeneroRepository
             </summary>
         </member>
         <member name="M:WebAPI.Fime.Manha.Controllers.GeneroController.#ctor">
@@ -66,11 +100,11 @@
             Definir os métodos que serão implementados pelo FilmeRepository
             </summary>
         </member>
-        <member name="M:WebAPI.Fime.Manha.Interfaces.IFilmeRepository.Cadastrar(WebAPI.Fime.Manha.Domains.GeneroDomain)">
+        <member name="M:WebAPI.Fime.Manha.Interfaces.IFilmeRepository.Cadastrar(WebAPI.Fime.Manha.Domains.FilmeDomain)">
             <summary>
             Cadastrar um Novo Genero
             </summary>
-            <param name="novoGenero">objeto que será cadastrado</param>
+            <param name="novoFilme">objeto que será cadastrado</param>
         </member>
         <member name="M:WebAPI.Fime.Manha.Interfaces.IFilmeRepository.ListarTodos">
             <summary>
@@ -78,18 +112,18 @@
             </summary>
             <returns>Lista com os objetos</returns>
         </member>
-        <member name="M:WebAPI.Fime.Manha.Interfaces.IFilmeRepository.AtualizarIdCorpo(WebAPI.Fime.Manha.Domains.GeneroDomain)">
+        <member name="M:WebAPI.Fime.Manha.Interfaces.IFilmeRepository.AtualizarIdCorpo(WebAPI.Fime.Manha.Domains.FilmeDomain)">
             <summary>
             Atuslizar um objeto existente passandoseu id pelo corpo da requisição
             </summary>
-            <param name="genero">Objetocom atualizado</param>
+            <param name="filme">Objetocom atualizado</param>
         </member>
-        <member name="M:WebAPI.Fime.Manha.Interfaces.IFilmeRepository.AtualizarIdUrl(System.Int32,WebAPI.Fime.Manha.Domains.GeneroDomain)">
+        <member name="M:WebAPI.Fime.Manha.Interfaces.IFilmeRepository.AtualizarIdUrl(System.Int32,WebAPI.Fime.Manha.Domains.FilmeDomain)">
             <summary>
             Atualizar obejeto esistente passando seu id pela URL
             </summary>
             <param name="id">id do objeto que será atualizado</param>
-            <param name="genero">objeto com os novas informações</param>
+            <param name="filme">objeto com os novas informações</param>
         </member>
         <member name="M:WebAPI.Fime.Manha.Interfaces.IFilmeRepository.Deletar(System.Int32)">
             <summary>
@@ -151,6 +185,9 @@
         <member name="F:WebAPI.Fime.Manha.Repositoris.FilmeRepository.StringConexao">
             <summary>
             String de conexão com o banco de dados ...
+            Data Source: Nome do servidor
+            Initial Catalog: Nome do banco de dados
+            Autenticação: User Id=sa; Password=Senai@134;
             </summary>
         </member>
         <member name="F:WebAPI.Fime.Manha.Repositoris.GeneroRepository.StringConexao">

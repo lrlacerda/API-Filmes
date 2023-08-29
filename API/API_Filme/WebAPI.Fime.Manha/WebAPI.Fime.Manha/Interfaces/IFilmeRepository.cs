@@ -11,27 +11,27 @@ namespace WebAPI.Fime.Manha.Interfaces
         /// <summary>
         /// Cadastrar um Novo Genero
         /// </summary>
-        /// <param name="novoGenero">objeto que será cadastrado</param>
-        void Cadastrar(GeneroDomain novoGenero);
+        /// <param name="novoFilme">objeto que será cadastrado</param>
+        void Cadastrar(FilmeDomain novoFilme);
 
         /// <summary>
         /// Listar todos os objetos cadastrados
         /// </summary>
         /// <returns>Lista com os objetos</returns>
-        List<GeneroDomain> ListarTodos();
+        List<FilmeDomain> ListarTodos();
 
         /// <summary>
         /// Atuslizar um objeto existente passandoseu id pelo corpo da requisição
         /// </summary>
-        /// <param name="genero">Objetocom atualizado</param>
-        void AtualizarIdCorpo(GeneroDomain genero);
+        /// <param name="filme">Objetocom atualizado</param>
+        void AtualizarIdCorpo(FilmeDomain filme);
 
         /// <summary>
         /// Atualizar obejeto esistente passando seu id pela URL
         /// </summary>
         /// <param name="id">id do objeto que será atualizado</param>
-        /// <param name="genero">objeto com os novas informações</param>
-        void AtualizarIdUrl(int id, GeneroDomain genero);
+        /// <param name="filme">objeto com os novas informações</param>
+        void AtualizarIdUrl(int id, FilmeDomain filme);
 
         /// <summary>
         /// Deletar um objeto
@@ -44,6 +44,6 @@ namespace WebAPI.Fime.Manha.Interfaces
         /// </summary>
         /// <param name="Id">id do obejeto a ser buscado</param>
         /// <returns>objeto buscado</returns>
-        GeneroDomain BuscarPorId(int Id);
+        FilmeDomain BuscarPorId(int Id);
     }
 }
