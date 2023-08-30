@@ -4,6 +4,12 @@
         <name>WebAPI.Fime.Manha</name>
     </assembly>
     <members>
+        <member name="M:WebAPI.Fime.Manha.Controllers.FilmeController.Get">
+            <summary>
+            Endpoint que aciona o método ListarTodos no repositório e retorna a resposta para o usuário(front-end)
+            </summary>
+            <returns>Retorna a resposnta para o usuário</returns>
+        </member>
         <member name="M:WebAPI.Fime.Manha.Controllers.FilmeController.Get(System.Int32)">
             <summary>
             Endpoint que aciona o método ListarId no repositório e retorna a resposta para o usuário(front-end)
@@ -94,6 +100,7 @@
             Classe que representa a entidade(tabela) Genero
             </summary>
         </member>
+        <!-- Badly formed XML comment ignored for member "T:WebAPI.Fime.Manha.Domains.UsuarioDomain" -->
         <member name="T:WebAPI.Fime.Manha.Interfaces.IFilmeRepository">
             <summary>
             Interface responsável pelo repositório FilmeRepository
@@ -182,6 +189,12 @@
             <param name="Id">id do obejeto a ser buscado</param>
             <returns>objeto buscado</returns>
         </member>
+        <member name="T:WebAPI.Fime.Manha.Interfaces.IUsuarioRepository">
+            <summary>
+            Interface responsável pelo repositório UsuarioRepository
+             Definir os métodos que serão implementados pelo UsuarioRepository
+            </summary>
+        </member>
         <member name="F:WebAPI.Fime.Manha.Repositoris.FilmeRepository.StringConexao">
             <summary>
             String de conexão com o banco de dados ...
@@ -235,6 +248,14 @@
             Listar todos os objetos generos
             </summary>
             <returns>Lista de Objetos(gêneros)</returns>
+        </member>
+        <member name="F:WebAPI.Fime.Manha.Repositories.UsuarioRepository.StringConexao">
+            <summary>
+            String de conexão com o banco de dados ...
+            Data Source: Nome do servidor
+            Initial Catalog: Nome do banco de dados
+            Autenticação: User Id=sa; Password=Senai@134;
+            </summary>
         </member>
     </members>
 </doc>

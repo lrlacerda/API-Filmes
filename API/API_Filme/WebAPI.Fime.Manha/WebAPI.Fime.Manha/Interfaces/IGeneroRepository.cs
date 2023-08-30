@@ -8,7 +8,6 @@ namespace WebAPI.Fime.Manha.Interfaces
     /// </summary>
     public interface IGeneroRepository
     {
-
         /// <summary>
         /// Cadastrar um Novo Genero
         /// </summary>

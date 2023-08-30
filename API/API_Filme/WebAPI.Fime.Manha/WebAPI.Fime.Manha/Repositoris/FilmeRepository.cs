@@ -82,7 +82,6 @@ namespace WebAPI.Fime.Manha.Repositoris
             return filme;
         }
 
-
         public void Cadastrar(FilmeDomain novoFilme)
         {
             using (SqlConnection con = new SqlConnection(StringConexao))
@@ -138,7 +137,14 @@ namespace WebAPI.Fime.Manha.Repositoris
                         FilmeDomain filme = new FilmeDomain()
                         {
                             IdFilme = Convert.ToInt32(rdr["IdFilme"]),
-                            Titulo = Convert.ToString(rdr["Titulo"])
+                            IdGenero= Convert.ToInt32(rdr["IdGenero"]),
+                            Titulo = Convert.ToString(rdr["Titulo"]),
+
+                            //Genero = new GeneroDomain() 
+                            //{
+                            //    IdGenero = Convert.ToInt32(rdr["IdGenero"]),
+                            //    //Nome = Convert.ToInt32(rdr["Nome"])
+                            //}
                         };
 
                         listaFilmes.Add(filme);

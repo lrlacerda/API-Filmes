@@ -11,5 +11,6 @@ namespace WebAPI.Fime.Manha.Domains
 
         [Required(ErrorMessage = "O nome do Gênero é obrigatório")]
         public string? Nome  { get; set; }
+
     }
 }
