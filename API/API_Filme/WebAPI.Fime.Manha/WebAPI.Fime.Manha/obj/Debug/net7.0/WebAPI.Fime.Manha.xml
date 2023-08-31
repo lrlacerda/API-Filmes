@@ -46,7 +46,7 @@
         </member>
         <member name="P:WebAPI.Fime.Manha.Controllers.GeneroController._generoRepository">
             <summary>
-            Objeto _generoRepository que ira receber todos os m[etodos na interface IGeneroRepository
+            Objeto _generoRepository que ira receber todos os metodos na interface IGeneroRepository
             </summary>
         </member>
         <member name="M:WebAPI.Fime.Manha.Controllers.GeneroController.#ctor">
@@ -100,7 +100,11 @@
             Classe que representa a entidade(tabela) Genero
             </summary>
         </member>
-        <!-- Badly formed XML comment ignored for member "T:WebAPI.Fime.Manha.Domains.UsuarioDomain" -->
+        <member name="T:WebAPI.Fime.Manha.Domains.UsuarioDomain">
+            <summary>
+            Classe que representa a entidade(tabela) Usuarios
+            </summary>
+        </member>
         <member name="T:WebAPI.Fime.Manha.Interfaces.IFilmeRepository">
             <summary>
             Interface responsável pelo repositório FilmeRepository
@@ -249,7 +253,7 @@
             </summary>
             <returns>Lista de Objetos(gêneros)</returns>
         </member>
-        <member name="F:WebAPI.Fime.Manha.Repositories.UsuarioRepository.StringConexao">
+        <member name="F:WebAPI.Fime.Manha.Repositoris.UsuarioRepository.StringConexao">
             <summary>
             String de conexão com o banco de dados ...
             Data Source: Nome do servidor

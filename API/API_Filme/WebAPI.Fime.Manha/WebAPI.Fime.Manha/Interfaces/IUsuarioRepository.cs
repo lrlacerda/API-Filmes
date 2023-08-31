@@ -8,8 +8,7 @@ namespace WebAPI.Fime.Manha.Interfaces
     /// </summary>
     public interface IUsuarioRepository
     {
-        bool Login(string Email, string Senha);
-        List<UsuarioDomain> ListarTodos();
+        UsuarioDomain Login(string Email, string Senha);
     }
 }
 

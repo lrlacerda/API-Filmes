@@ -1,9 +1,8 @@
-﻿using WebAPI.Fime.Manha.Domains;
+﻿using System.Data.SqlClient;
+using WebAPI.Fime.Manha.Domains;
 using WebAPI.Fime.Manha.Interfaces;
-using System.Collections.Generic;
-using System.Data.SqlClient;
 
-namespace WebAPI.Fime.Manha.Repositories
+namespace WebAPI.Fime.Manha.Repositoris
 {
     public class UsuarioRepository : IUsuarioRepository
     {
@@ -15,52 +14,44 @@ namespace WebAPI.Fime.Manha.Repositories
         /// </summary>
         private string StringConexao = "Data Source=NOTE06-S15; Initial Catalog=Filmes_Lucas; User Id=sa; Password=Senai@134;";
 
-        public List<UsuarioDomain> ListarTodos()
+        public UsuarioDomain Login(string Email, string Senha)
         {
-            List<UsuarioDomain> listaUsuarios = new List<UsuarioDomain>();
-
             using (SqlConnection con = new SqlConnection(StringConexao))
             {
-                string querySelectAll = "SELECT IdUsuario, Email, Senha, Permissao FROM Usuario";
+                string querySelect = "SELECT Email, Senha FROM Usuarios WHERE Email = @Email AND Senha = @Senha";
 
                 con.Open();
 
-                using (SqlCommand cmd = new SqlCommand(querySelectAll, con))
+                SqlDataReader rdr;
+
+                using (SqlCommand cmd = new SqlCommand(querySelect, con))
                 {
-                    SqlDataReader rdr;
+                    cmd.Parameters.AddWithValue("@Email", Email);
+                    cmd.Parameters.AddWithValue("@Senha", Senha);
+
                     rdr = cmd.ExecuteReader();
 
-                    while (rdr.Read())
                     {
-                        UsuarioDomain usuario = new UsuarioDomain()
+                        if (rdr.Read())
                         {
-                            IdUsuario = Convert.ToInt32(rdr["IdUsuario"]),
-                            Email = Convert.ToString(rdr["Email"]),
-                            Senha = Convert.ToString(rdr["Senha"]),
-                            Permissao = Convert.ToString(rdr["Permissao"])
-                        };
+                            UsuarioDomain usuario = new UsuarioDomain()
+                            {
+                               
+                                Email = Convert.ToString(rdr["Email"]),
+                                Senha = Convert.ToString(rdr["Senha"]),
+                               
+                            };
 
-                        listaUsuarios.Add(usuario);
+                            return usuario;
+                        }
+                        else
+                        {
+                            return null; // Usuário não encontrado
+                        }
                     }
                 }
             }
-
-            return listaUsuarios;
-        }
-
-        // Implementação do método Login
-        public bool Login(string Email, string Senha)
-        {
-            // Procurar o usuário com o email fornecido na lista de usuários
-            UsuarioDomain usuario = ListarTodos().Find(u => u.Email == Email);
-
-            // Verificar se o usuário foi encontrado e se a senha corresponde
-            if (usuario != null && usuario.Senha == Senha)
-            {
-                return true;  // Login bem-sucedido
-            }
-
-            return false;  // Login falhou
         }
     }
+
 }

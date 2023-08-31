@@ -2,13 +2,14 @@
 {
     /// <summary>
     /// Classe que representa a entidade(tabela) Usuarios
-    /// </summary
+    /// </summary>
     public class UsuarioDomain
     {
         public int IdUsuario { get; set; }
         public string Email { get; set; }
         public string Senha { get; set; }
         public string Permissao { get; set; }
+        public UsuarioDomain? Usuario { get; set; }
     }
 }
 

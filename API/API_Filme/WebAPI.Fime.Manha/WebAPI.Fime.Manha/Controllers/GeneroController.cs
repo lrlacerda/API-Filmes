@@ -23,7 +23,7 @@ namespace WebAPI.Fime.Manha.Controllers
     public class GeneroController : ControllerBase
     {
         /// <summary>
-        /// Objeto _generoRepository que ira receber todos os m[etodos na interface IGeneroRepository
+        /// Objeto _generoRepository que ira receber todos os metodos na interface IGeneroRepository
         /// </summary>
         private IGeneroRepository _generoRepository { get; set; }
 
