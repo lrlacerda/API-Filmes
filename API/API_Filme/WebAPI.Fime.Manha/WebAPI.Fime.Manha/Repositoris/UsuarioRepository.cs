@@ -18,28 +18,24 @@ namespace WebAPI.Fime.Manha.Repositoris
         {
             using (SqlConnection con = new SqlConnection(StringConexao))
             {
-                string querySelect = "SELECT Email, Senha FROM Usuarios WHERE Email = @Email AND Senha = @Senha";
+                string querySelect = "SELECT IdUsuario, Email, Permissao FROM Usuarios WHERE Email = @Email AND Senha = @Senha";
 
                 con.Open();
-
-                SqlDataReader rdr;
 
                 using (SqlCommand cmd = new SqlCommand(querySelect, con))
                 {
                     cmd.Parameters.AddWithValue("@Email", Email);
                     cmd.Parameters.AddWithValue("@Senha", Senha);
 
-                    rdr = cmd.ExecuteReader();
-
+                    SqlDataReader rdr = cmd.ExecuteReader();
                     {
                         if (rdr.Read())
                         {
                             UsuarioDomain usuario = new UsuarioDomain()
                             {
-                               
+                                IdUsuario = Convert.ToInt32(rdr["IdUsuario"]),
                                 Email = Convert.ToString(rdr["Email"]),
-                                Senha = Convert.ToString(rdr["Senha"]),
-                               
+                                Permissao = Convert.ToString(rdr["Permissao"]),
                             };
 
                             return usuario;
