@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using WebAPI.Fime.Manha.Domains;
 using WebAPI.Fime.Manha.Interfaces;
@@ -17,6 +18,8 @@ namespace WebAPI.Fime.Manha.Controllers
 
     //Define que tipo de resposta da api será no formato json
     [Produces("application/json")]
+
+    //[Authorize]
 
     //Método controlador que herda da controller base
     //Onde será gerado os Endpoints (rotas)
@@ -40,6 +43,7 @@ namespace WebAPI.Fime.Manha.Controllers
         /// </summary>
         /// <returns>Retorna a resposnta para o usuário</returns>
         [HttpGet]
+        [Authorize(Roles = "admin, normal")]
         public IActionResult Get()
         {
             try
@@ -92,6 +96,7 @@ namespace WebAPI.Fime.Manha.Controllers
         /// <param name="nonoGenero">Objeto recebido na requisição</param>
         /// <returns>status code 201(created)</returns>
         [HttpPost]
+        [Authorize(Roles = "admin")]
         public IActionResult Post(GeneroDomain nonoGenero)
         {
             try
@@ -114,6 +119,7 @@ namespace WebAPI.Fime.Manha.Controllers
         /// </summary>
         /// <param name="id">ID do Objeto recebido na requisição a ser Deletado</param>
         [HttpDelete("{id}")] // Use o atributo HttpDelete e especifique o parâmetro id
+        [Authorize(Roles = "admin")]
         public IActionResult Delete(int id) // Especifique o parâmetro id no método
         {
             try

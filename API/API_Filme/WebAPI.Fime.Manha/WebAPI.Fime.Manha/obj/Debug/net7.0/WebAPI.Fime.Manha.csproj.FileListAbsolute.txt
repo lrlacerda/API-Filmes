@@ -78,3 +78,11 @@ C:\Users\32784630803\Desktop\API-Filmes\API\API_Filme\WebAPI.Fime.Manha\WebAPI.F
 C:\Users\32784630803\Desktop\API-Filmes\API\API_Filme\WebAPI.Fime.Manha\WebAPI.Fime.Manha\obj\Debug\net7.0\WebAPI.Fime.Manha.pdb
 C:\Users\32784630803\Desktop\API-Filmes\API\API_Filme\WebAPI.Fime.Manha\WebAPI.Fime.Manha\obj\Debug\net7.0\WebAPI.Fime.Manha.genruntimeconfig.cache
 C:\Users\32784630803\Desktop\API-Filmes\API\API_Filme\WebAPI.Fime.Manha\WebAPI.Fime.Manha\obj\Debug\net7.0\ref\WebAPI.Fime.Manha.dll
+C:\Users\32784630803\Desktop\API-Filmes\API\API_Filme\WebAPI.Fime.Manha\WebAPI.Fime.Manha\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\32784630803\Desktop\API-Filmes\API\API_Filme\WebAPI.Fime.Manha\WebAPI.Fime.Manha\bin\Debug\net7.0\Microsoft.IdentityModel.Abstractions.dll
+C:\Users\32784630803\Desktop\API-Filmes\API\API_Filme\WebAPI.Fime.Manha\WebAPI.Fime.Manha\bin\Debug\net7.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\32784630803\Desktop\API-Filmes\API\API_Filme\WebAPI.Fime.Manha\WebAPI.Fime.Manha\bin\Debug\net7.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\32784630803\Desktop\API-Filmes\API\API_Filme\WebAPI.Fime.Manha\WebAPI.Fime.Manha\bin\Debug\net7.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\32784630803\Desktop\API-Filmes\API\API_Filme\WebAPI.Fime.Manha\WebAPI.Fime.Manha\bin\Debug\net7.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\32784630803\Desktop\API-Filmes\API\API_Filme\WebAPI.Fime.Manha\WebAPI.Fime.Manha\bin\Debug\net7.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\32784630803\Desktop\API-Filmes\API\API_Filme\WebAPI.Fime.Manha\WebAPI.Fime.Manha\bin\Debug\net7.0\System.IdentityModel.Tokens.Jwt.dll
